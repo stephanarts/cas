@@ -23,6 +23,7 @@ public class IgniteProperties {
     private String keyAlgorithm;
     private String trustStoreFilePath;
     private String trustStorePassword;
+    private int localPort;
 
     @NestedConfigurationProperty
     private CryptographyProperties crypto = new CryptographyProperties();
@@ -115,6 +116,14 @@ public class IgniteProperties {
         this.ticketsCache = ticketsCache;
     }
 
+    public int getLocalPort() {
+        return localPort;
+    }
+
+    public void setLocalPort(final int localPort) {
+        this.localPort = localPort;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
@@ -126,6 +135,7 @@ public class IgniteProperties {
                 .append("protocol", protocol)
                 .append("keyAlgorithm", keyAlgorithm)
                 .append("trustStoreFilePath", trustStoreFilePath)
+                .append("localPort", localPort)
                 .toString();
     }
 
@@ -167,8 +177,7 @@ public class IgniteProperties {
             this.writeSynchronizationMode = writeSynchronizationMode;
         }
     }
-    
-    
+
 }
 
 

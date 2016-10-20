@@ -48,8 +48,10 @@ public class IgniteTicketRegistryConfiguration {
         final IgniteConfiguration config = new IgniteConfiguration();
         final TcpDiscoverySpi spi = new TcpDiscoverySpi();
         final TcpDiscoveryVmIpFinder finder = new TcpDiscoveryVmIpFinder();
+        final int localPort = casProperties.getTicket().getRegistry().getIgnite().getLocalPort();
         finder.setAddresses(StringUtils.commaDelimitedListToSet(casProperties.getTicket().getRegistry().getIgnite().getIgniteAddresses()));
         spi.setIpFinder(finder);
+        spi.setLocalPort(localPort);
         config.setDiscoverySpi(spi);
 
         final List<CacheConfiguration> configurations = new ArrayList<>();
